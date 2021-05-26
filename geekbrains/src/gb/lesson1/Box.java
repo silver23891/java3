@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Box<T extends Fruit> {
-    private List<T> content;
-
-    public Box(T... content) {
-        this.content = List.of(content);
-    }
+    private List<T> content = new ArrayList<>();
 
     public void addFruit(T fruit) {
         content.add(fruit);
@@ -28,15 +24,17 @@ public class Box<T extends Fruit> {
         if (content.size() == 0) {
             return 0;
         }
-        return content.size()*content.get(0).getWeight();
+        return content.size()*content.get(content.size()-1).getWeight();
     }
 
-    public boolean compare(Box<?> secondBox) {
-        return secondBox.getWeight() - this.getWeight() < 0.00001;
+    public boolean compare(Box<? extends Fruit> secondBox) {
+        return Math.abs(secondBox.getWeight() - this.getWeight()) < 0.00001;
     }
 
     public void takeFruits(Box<T> fromBox) {
-        content.addAll(fromBox.getContent());
+        List<T> contentCopy = new ArrayList<>(List.copyOf(content));
+        contentCopy.addAll(fromBox.getContent());
+        content = contentCopy;
         fromBox.setContent(new ArrayList<>());
     }
 }
