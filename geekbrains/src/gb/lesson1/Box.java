@@ -32,7 +32,7 @@ public class Box<T extends Fruit> {
     }
 
     public void takeFruits(Box<T> fromBox) {
-        List<T> contentCopy = new ArrayList<>(List.copyOf(content));
+        List<T> contentCopy = new ArrayList<>(content);
         contentCopy.addAll(fromBox.getContent());
         content = contentCopy;
         fromBox.setContent(new ArrayList<>());

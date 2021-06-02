@@ -26,7 +26,7 @@ public class GenericArray<T> {
         array[second] = buffer;
     }
 
-    public List getListFromArray() {
+    public List<T> getListFromArray() {
         return List.of(array);
     }
 
