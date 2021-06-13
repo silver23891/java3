@@ -1,5 +1,7 @@
 package gb.lesson5;
 
+import gb.lesson5.RaceStages.Preparation;
+import gb.lesson5.RaceStages.RaceStage;
 import gb.lesson5.stages.Stage;
 
 import java.util.ArrayList;
@@ -8,11 +10,20 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Race {
+    private RaceStage raceStage = new Preparation(this);
+    private ArrayList<Stage> stages;
+
     private CountDownLatch preparationLatch = new CountDownLatch(MainClass.CARS_COUNT);
     private CountDownLatch finishLatch = new CountDownLatch(MainClass.CARS_COUNT);
     private AtomicBoolean haveWinner = new AtomicBoolean(false);
 
-    private ArrayList<Stage> stages;
+    public RaceStage getRaceStage() {
+        return raceStage;
+    }
+
+    public void setRaceStage(RaceStage raceStage) {
+        this.raceStage = raceStage;
+    }
 
     public ArrayList<Stage> getStages() { return stages; }
 
