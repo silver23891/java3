@@ -6,9 +6,4 @@ public class BeforeSuiteTestMethod extends TestMethod{
     public BeforeSuiteTestMethod(Object targetObject, Method method) {
         super(0, targetObject, method);
     }
-
-    @Override
-    public void run() {
-        super.run();
-    }
 }
